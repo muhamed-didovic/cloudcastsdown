@@ -1,0 +1,65 @@
+[
+  {
+    "title": "A Packer Primer",
+    "slug": "a-packer-primer",
+    "value": "https://cloudcasts.io/course/a-packer-primer",
+    "url": "https://cloudcasts.io/course/a-packer-primer",
+    "downPath": "a-packer-primer/0-a-packer-primer"
+  },
+  {
+    "title": "DevOps with Terraform",
+    "slug": "terraform",
+    "value": "https://cloudcasts.io/course/terraform",
+    "url": "https://cloudcasts.io/course/terraform",
+    "downPath": "terraform/0-terraform"
+  },
+  {
+    "title": "Simple Auto Scaling",
+    "slug": "simple-auto-scaling",
+    "value": "https://cloudcasts.io/course/simple-auto-scaling",
+    "url": "https://cloudcasts.io/course/simple-auto-scaling",
+    "downPath": "simple-auto-scaling/0-simple-auto-scaling"
+  },
+  {
+    "title": "Serverless with Lambda",
+    "slug": "serverless-with-lambda",
+    "value": "https://cloudcasts.io/course/serverless-with-lambda",
+    "url": "https://cloudcasts.io/course/serverless-with-lambda",
+    "downPath": "serverless-with-lambda/0-serverless-with-lambda"
+  },
+  {
+    "title": "VPC Basics",
+    "slug": "vpc-basics",
+    "value": "https://cloudcasts.io/course/vpc-basics",
+    "url": "https://cloudcasts.io/course/vpc-basics",
+    "downPath": "vpc-basics/0-vpc-basics"
+  },
+  {
+    "title": "EC2 Essentials",
+    "slug": "ec2-essentials",
+    "value": "https://cloudcasts.io/course/ec2-essentials",
+    "url": "https://cloudcasts.io/course/ec2-essentials",
+    "downPath": "ec2-essentials/0-ec2-essentials"
+  },
+  {
+    "title": "IAM Basics",
+    "slug": "iam-basics",
+    "value": "https://cloudcasts.io/course/iam-basics",
+    "url": "https://cloudcasts.io/course/iam-basics",
+    "downPath": "iam-basics/0-iam-basics"
+  },
+  {
+    "title": "Onboarding AWS",
+    "slug": "onboarding-aws",
+    "value": "https://cloudcasts.io/course/onboarding-aws",
+    "url": "https://cloudcasts.io/course/onboarding-aws",
+    "downPath": "onboarding-aws/0-onboarding-aws"
+  },
+  {
+    "title": "Understanding Lambda",
+    "slug": "understanding-lambda",
+    "value": "https://cloudcasts.io/course/understanding-lambda",
+    "url": "https://cloudcasts.io/course/understanding-lambda",
+    "downPath": "understanding-lambda/0-understanding-lambda"
+  }
+]

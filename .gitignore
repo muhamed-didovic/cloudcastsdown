@@ -1,0 +1,10 @@
+.idea
+node_modules/
+videos/
+videos2/
+*.lock
+*.log
+test/.cache
+coverage
+
+dist

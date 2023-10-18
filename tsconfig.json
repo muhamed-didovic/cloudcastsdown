@@ -1,0 +1,45 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "nodenext",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true, // Removed resolveJsonModule option
+        "declaration": true,
+        "sourceMap": true,
+        "outDir": "dist",
+        "strict": true,
+        "allowJs": true,
+        "checkJs": true,
+        "jsx": "react-jsx",
+        "lib": [
+            "es2015",
+            "es2016",
+            "es2017",
+            "es2018",
+            "es2019",
+            "es2020",
+            "es2020.Promise",
+            "es2021",
+            "es2022",
+            "ESNext",
+            "dom"
+        ],
+        "types": ["bun-types"],
+        "rootDir": "src",
+    },
+    "exclude": [
+        "node_modules",
+        "node_modules/puppeteer",
+        "dist",
+        "src/Crawler.ts",
+        "src/helpers/PuppeteerHelper.ts",
+        "src/helpers/DownloadChapters.ts"
+    ],
+    "include": ["src/**/*.ts"],//, "src/**/*.cts"
+    "allowUnreachableCode": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
+}
