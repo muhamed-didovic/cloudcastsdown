@@ -1,4 +1,3 @@
-//@ts-ignore
 import remote from "remote-file-size";
 
 const getFileSize = (opts: any) => {

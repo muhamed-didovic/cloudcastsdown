@@ -9,7 +9,6 @@ import FileChecker from "./fileChecker.js";
 // import {YTDlpWrap} from 'yt-dlp-wrap';
 // const ytDlpWrap = new YTDlpWrap();
 
-//@ts-ignore
 // import YTDlpWrap from'./y.cjs';
 import {BcDLP} from 'bc-dlp'
 

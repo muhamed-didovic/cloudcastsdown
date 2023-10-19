@@ -35,7 +35,6 @@ const getFilesizeInBytes = (filename: fs.PathLike) => {
 // type DownloadChapter = (url: string, dest: string, cb: (progress: any) => void) => Promise<void>;
 
 const downloadChapter = async (url: any, dest: string, cb: (progress: any) => void) => {//
-    // @ts-ignore
     return await mpbDown(url, dest, cb);
     // const ytDlpWrap: any = new YTDlpWrap();
     // return new Promise((resolve, reject) => {
@@ -140,7 +139,6 @@ const downloader = async (opts: { mpb: any; chapters: any; concurrency: any; fil
         }
 
         if (file) {
-            // @ts-ignore
             chapters[index].done = true;
             await fs.writeFile(filePath, JSON.stringify(chapters, null, 2), 'utf8');
         }

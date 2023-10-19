@@ -1,6 +1,5 @@
 import path from 'path';
 import fs from 'fs-extra';
-// @ts-ignore
 import colors from 'colors';
 // import {pRetry} from '@byungi/p-retry';
 // import {pDelay} from '@byungi/p-delay';
@@ -11,7 +10,6 @@ import FileChecker from './fileChecker.js';
 // import ytDlp from "./ytdlp.cjs"
 // import async from 'async';
 
-// @ts-ignore
 import Spinnies from "dreidels";
 const ms = new Spinnies();
 // import remote from "remote-file-size";

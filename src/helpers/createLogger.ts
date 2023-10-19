@@ -26,7 +26,6 @@ const createLogger = (opts = {}) => new Proxy({ isLogger: true }, {
                 )
             }
         }
-        //@ts-ignore
         return typeof o[prop] === 'function' ? o[prop].bind(o) : o[prop]
     }
 })
