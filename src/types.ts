@@ -10,12 +10,13 @@ export type Logger = {
 
 // Interface for the options object passed to the scrape function
 export interface ScrapeOpts {
+    videos: string;
     email: string;
     password: string;
     concurrency?: number;
     logger?: Logger | null;
     dir: string;
-    file?: boolean;
+    file: string;
     filePath?: string;
     all?: boolean;
     courseUrl?: string;

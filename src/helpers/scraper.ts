@@ -1,10 +1,8 @@
 import * as path from 'path';
 import sanitize from 'sanitize-filename';
 import fs from 'fs-extra';
-// @ts-ignore
 // import scrape from 'website-scraper';
 import scrape from '../website-scraper/index.js';
-// @ts-ignore
 import SaveToExistingDirectoryPlugin from 'website-scraper-existing-directory';
 // import { parentPort } from "worker_threads";
 import logger from "./logger.js";
@@ -46,15 +44,15 @@ const createFullPageScreenshot = async(page: Page, dest: string, position: numbe
     });
 }
 
-const createMarkdown = async (dest: string, lesson: Lesson, position: number | string, title: string, markdown: any) => {
+/*const createMarkdown = async (dest: string, lesson: Lesson, position: number | string, title: string, markdown: any) => {
     logger.debug(`[createMarkdown] entering [source]: ${lesson.series}`)
     const nhm = new NodeHtmlMarkdown();
 
     await fs.ensureDir(path.join(dest, 'markdown'))
     fs.writeFile(path.join(dest, 'markdown', sanitize(`${getPosition(position)}${title}.md`)), nhm.translate(markdown), 'utf8')
     await delay(1e3)
-    logger.debug(`[createMarkdown] ending [source]: ${lesson.course}`)
-}
+    logger.debug(`[createMarkdown] ending from scraper [source]: ${lesson.course}`)
+}*/
 const createMarkdownFromHtml = async (page: Page, dest: string, lesson: Lesson, position: string | number, title: string) => {
     logger.debug(`[markdown] entering createMarkdownFromHtml scraper [source]: ${ lesson.url }`)
     const nhm = new NodeHtmlMarkdown();
@@ -160,7 +158,7 @@ class PuppeteerPlugin {
             const isHtml = contentType && contentType.split(';')[0] === 'text/html';
             logger.debug(`[scraper] ---------------------- afterResponse hook ---- [source]: ${ response.url } content-type: ${ contentType } isHtml: ${ isHtml }`)
             if (isHtml) {
-                logger.info(`[scraper] entering PuppeteerPlugin [source]: ${ this.lesson.url }`)
+                logger.info(`[scraper] entering PuppeteerPlugin [source]: `, this.lesson.url, 'with response url:', response.url  )
                 // const url = response.url;
                 const opts = this.opts
                 const page = this.page
@@ -314,8 +312,10 @@ class PuppeteerPlugin {
                 // logger.info(`[scraper] Compare URLs: ${ this.lesson.url  } with scrapred url: ${ scrapedUrl }, RESULT: ${ scrapedUrl === this.lesson.url } with response url: ${ response.url }`)
 
                 const dest = path.join(opts.dir, this.lesson.downPath);
+                logger.debug(`[scraper] before promise all: `, this.lesson.url )
                 const [content,] = await Promise.all([
                     (async () => {
+                        logger.debug(`[scraper] content: `, this.lesson.url )
                         return await page.content();
                     })(),
                     (async () => {
@@ -324,14 +324,6 @@ class PuppeteerPlugin {
                         await delay(2e3)
                         //await this.createFullPageScreenshot(page, path.join(dest, 'screenshots'), position, title);
                         logger.debug(`[scraper] createFullPageScreenshot [source]: ${ this.lesson.url } `)//with dest: ${ dest } with position: ${ this.position }
-                        /*await fs.ensureDir(path.join(dest, 'screenshots'))
-                        await page.screenshot({
-                            path: path.join(dest, 'screenshots', sanitize(`${ String(this.position).padStart(2, '0') }-${ this.lesson.title }.png`)),//-full.png
-                            fullPage: true,
-                            type: 'png',
-                            omitBackground: true,
-                            delay: '1000ms'
-                        });*/
 
                         const $sec = await page.$('body')
                         if (!$sec) throw new Error(`Parsing failed!`)
@@ -347,6 +339,7 @@ class PuppeteerPlugin {
                     })(),
                     (async () => {
                         if (scrapedUrl === this.lesson.url) return;
+                        logger.debug(`[scraper] markdown: `, this.lesson.url )
                         await createMarkdownFromHtml(page, dest, this.lesson, this.position, this.lesson.slug)
                     })(),
                     // (async () => {
