@@ -1,11 +1,10 @@
 import meow from "meow";
-//@ts-ignore
 import prompts from "prompts";
 // import createLogger from "./helpers/createLogger";
 
 import * as path from "path";
 import fs from "fs-extra";
-// @ts-ignore
+
 import * as isValidPath from "is-valid-path";
 // import Crawler from "./Crawler.js";
 
@@ -38,7 +37,7 @@ Options
     --email, -e         Your email.
     --password, -p      Your password.
     --directory, -d     Directory to save.
-    --source, -s        Download lessons or courses (Default: courses)
+    --source, -s        Download articles or courses (Default: courses)
     --file, -f          Location of the file where are the courses
     --overwrite, -o     Overwrite if resource exists (values: 'yes' or 'no'), default value is 'no'
     --headless, -h      Enable headless (values: 'yes' or 'no'), default value is 'yes'
@@ -51,7 +50,6 @@ Examples
     $ cloudcastsdown [url] [-d dirname] [-c number] [-f path-to-file]
 `, {
     hardRejection: false,
-    //@ts-ignore
     importMeta: import.meta,
     booleanDefault: undefined,
     flags: {
@@ -138,7 +136,7 @@ const folderContents = async (folder: string) => {
 
     if (all || (input.length === 0 && await askOrExit({
         type: 'confirm',
-        message: 'Do you want all courses?',
+        message: 'Do you want all courses or articles?',
         initial: false
     }))) {
         all = true;
@@ -175,13 +173,12 @@ const folderContents = async (folder: string) => {
                 input.push(await askOrExit({
                     type: 'autocomplete',
                     message: 'Search for a course',
-                    choices: await Crawler.searchCourses(foundSearchCoursesFile),
+                    choices: await Crawler.searchCourses(foundSearchCoursesFile, flags.source),
                     suggest: (input: any, choices: CourseSearch[]) => {
                         const options = {
                             keys: ['title', 'value']
                         };
                         if (!input) return choices;
-                        // @ts-ignore
                         const fuse = new Fuse(choices, options)
                         return fuse.search(input).map((i: { item: any; }) => i.item);
                     },
@@ -259,7 +256,7 @@ const folderContents = async (folder: string) => {
 
     const source = flags.source || await askOrExit({
         type: 'text',
-        message: 'Do you want to download lessons or courses',
+        message: 'Do you want to download articles or courses',
         initial: 'courses'
     })
 
