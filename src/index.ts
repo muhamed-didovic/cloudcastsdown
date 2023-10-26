@@ -32,7 +32,7 @@ export async function scrape(opts?: ScrapeOpts): Promise<void> {
     const { file, filePath, all } = opts ?? {};
 
     let crawler = new Crawler();
-    const courses = file ? require(filePath as string) : await crawler.scrapeCourses({ ...opts}, url as string);
+    const courses = file === 'yes' ? require(filePath as string) : await crawler.scrapeCourses({ ...opts}, url as string);
     console.log('found courses: ', courses.length);
 
     // return;
@@ -41,7 +41,7 @@ export async function scrape(opts?: ScrapeOpts): Promise<void> {
     const filename = `${prefix}-${new Date().toISOString().replace(/:/g , "-")}.json`;
     // await crawler.d(filename, prefix, courses, {...opts});
     // await crawler.createMarkdown(courses, url, opts);
-    await crawler.writeVideosIntoFile(file as boolean, prefix, courses, filename);
+    await crawler.writeVideosIntoFile(file, prefix, courses, filename);
     console.timeEnd('took');
 };
 
